@@ -1,7 +1,7 @@
 name: Social Counters
 version: 0.1.0
 description: Provides counts for social plugins such as GitHub and Twitter
-icon: plug
+icon: share-square
 author:
   name: Trilby Media
   email: devs@trilby.media
@@ -28,7 +28,27 @@ form:
         0: Disabled
       validate:
         type: bool
-    text_var:
+    cache_timeout:
       type: text
-      label: Text Variable
-      help: Text to add to the top of a page
+      size: small
+      label: Cache Timeout
+      append: seconds
+      help: Cache timeout for the user counts in seconds
+      validate:
+        type: number
+        min: 1
+    github.user:
+      type: text
+      size: large
+      label: GitHub User
+      help: username of your GitHub account
+    github.repo:
+      type: text
+      size: large
+      label: GitHub Repository
+      help: GitHub repository name
+    twitter.user:
+      type: text
+      size: large
+      label: Twitter User
+      help: username or handle of your Twitter account
