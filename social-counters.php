@@ -81,7 +81,7 @@ class SocialCountersPlugin extends Plugin
                 $twitter['followers'] = $followers;
                 $cache->save($cache_id . '-twitter', $twitter, $config['cache_timeout']);
             } else {
-                $twitter['error'] = 'Could not retrieve gitter followers';
+                $twitter['error'] = 'Could not retrieve Twitter followers';
             }
         }
 
