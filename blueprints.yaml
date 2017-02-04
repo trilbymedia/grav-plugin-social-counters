@@ -1,6 +1,6 @@
 name: Social Counters
-version: 0.1.0
-description: Provides counts for social plugins such as GitHub and Twitter
+version: 1.0.0
+description: Provides counts for social accounts such as GitHub and Twitter
 icon: share-square
 author:
   name: Trilby Media
