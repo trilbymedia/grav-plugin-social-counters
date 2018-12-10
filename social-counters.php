@@ -56,9 +56,7 @@ class SocialCountersPlugin extends Plugin
         // Github not found in cache, try again
         if ($github === false) {
 
-            $client = new \Github\Client(
-                new \Github\HttpClient\CachedHttpClient(array('cache_dir' => CACHE_DIR . '/github'))
-            );
+            $client = new \Github\Client();
 
             $repo = $client->api('repo');
 
