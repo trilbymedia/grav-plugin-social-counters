@@ -13,7 +13,7 @@ docs: https://github.com/trilbymedia/grav-plugin-social-counters/blob/develop/RE
 license: MIT
 
 dependencies:
-    - { name: github, version: '>=1.0' }
+    - { name: github, version: '>=2.0' }
 
 form:
   validation: strict
