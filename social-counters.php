@@ -71,15 +71,19 @@ class SocialCountersPlugin extends Plugin
         // Twitter not found in cache, try again
         if ($twitter === false) {
 
-            $response = json_decode(file_get_contents("https://cdn.syndication.twimg.com/widgets/followbutton/info.json?screen_names=".$config['twitter']['user']));
-            $followers = $response[0]->followers_count;
+            try {
+                $response = json_decode(file_get_contents("https://cdn.syndication.twimg.com/widgets/followbutton/info.json?screen_names=" . $config['twitter']['user']));
+                $followers = $response[0]->followers_count;
 
-            if (is_int($followers)) {
+                if (is_int($followers)) {
 
-                $twitter['followers'] = $followers;
-                $cache->save($cache_id . '-twitter', $twitter, $config['cache_timeout']);
-            } else {
-                $twitter['error'] = 'Could not retrieve Twitter followers';
+                    $twitter['followers'] = $followers;
+                    $cache->save($cache_id . '-twitter', $twitter, $config['cache_timeout']);
+                } else {
+                    $twitter['error'] = 'Could not retrieve Twitter followers';
+                }
+            } catch(\Exception $e) {
+                // echo $e;
             }
         }
 
