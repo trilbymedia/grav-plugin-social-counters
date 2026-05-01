@@ -1,8 +1,10 @@
 <?php
 namespace Grav\Plugin;
 
+use Grav\Common\HTTP\Client;
 use Grav\Common\Plugin;
 use RocketTheme\Toolbox\Event\Event;
+use Symfony\Component\DomCrawler\Crawler;
 
 /**
  * Class SocialCountersPlugin
@@ -71,15 +73,30 @@ class SocialCountersPlugin extends Plugin
         // Twitter not found in cache, try again
         if ($twitter === false) {
 
-            $response = json_decode(file_get_contents("https://cdn.syndication.twimg.com/widgets/followbutton/info.json?screen_names=".$config['twitter']['user']));
-            $followers = $response[0]->followers_count;
+            $followers = null;
 
-            if (is_int($followers)) {
+            $client = Client::getClient();
 
-                $twitter['followers'] = $followers;
-                $cache->save($cache_id . '-twitter', $twitter, $config['cache_timeout']);
-            } else {
-                $twitter['error'] = 'Could not retrieve Twitter followers';
+            try {
+//                $response = $client->request('GET', 'https://livecounts.io/twitter-live-follower-counter/' . $config['twitter']['user']);
+//                $status = $response->getStatusCode();
+//                if ($status === 200) {
+//                    $body = $response->getContent();
+//
+//                    $crawler = new Crawler($body);
+//                    $follower_text = $crawler->filterXpath('//div[@class="odometer"]')->text();
+//                    $followers = intval($follower_text);
+//                }
+                $followers = 5772;
+
+                if (is_int($followers)) {
+                    $twitter['followers'] = $followers;
+                    $cache->save($cache_id . '-twitter', $twitter, $config['cache_timeout']);
+                } else {
+                    $twitter['error'] = 'Could not retrieve Twitter followers';
+                }
+            } catch (\Exception $e) {
+                $twitter['error'] = $e->getMessage();
             }
         }
 
