@@ -1,5 +1,5 @@
 name: Social Counters
-version: 2.0.0
+version: 2.0.1
 description: Provides counts for social accounts such as GitHub and Twitter
 icon: share-square
 author:
@@ -11,6 +11,9 @@ keywords: grav, plugin, twitter, github
 bugs: https://github.com/trilbymedia/grav-plugin-social-counters/issues
 docs: https://github.com/trilbymedia/grav-plugin-social-counters/blob/develop/README.md
 license: MIT
+
+compatibility:
+  grav: ['1.7', '2.0']
 
 dependencies:
     - { name: github, version: '>=2.0' }
